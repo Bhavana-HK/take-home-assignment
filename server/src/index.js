@@ -1,11 +1,18 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 const auth = require("./routes/auth");
 const instances = require("./routes/instances");
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:3001', 
+  exposedHeaders: 'authorization',
+}
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json({ limit: "10mb" }));
 
