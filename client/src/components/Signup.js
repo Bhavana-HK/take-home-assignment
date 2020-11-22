@@ -3,6 +3,7 @@ import { Link as LinkComponent, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
 import { register } from '../services';
+import Alert from './Alert';
 
 export default function Signup() {
   const classes = useStyles();
@@ -27,9 +28,7 @@ export default function Signup() {
 
   return (
     <div>
-      {error && (
-        <p>{error}</p>
-      )}
+      {error && <Alert type="error">{error}</Alert> }
       <div>
         Sign up
       <form onSubmit={handleSubmit}>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link as LinkComponent, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, useHistory } from "react-router-dom";
-import { login } from '../services';
+import { Link, useHistory, Redirect } from "react-router-dom";
+import Alert from './Alert';
+import { login, getUser } from '../services';
 
 export default function Login() {
   const classes = useStyles();
@@ -25,11 +26,12 @@ export default function Login() {
       });
   };
 
+  if (getUser())
+    return <Redirect to={{ pathname: "/dashboard" }} />
+
   return (
     <div>
-      {error && (
-        <p>{error}</p>
-      )}
+      {error && <Alert type="error">{error}</Alert> }
       <div>
         Sign in
       <form onSubmit={handleSubmit}>
