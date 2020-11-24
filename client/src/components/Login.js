@@ -89,12 +89,21 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: 10,
     padding: theme.spacing(3),
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing(1),
+    },
   },
   form: {
     padding: theme.spacing(3),
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing(1),
+    },
     textTransform: 'uppercase',
     '& > *': {
       padding: theme.spacing(2),
+      [theme.breakpoints.down('md')]: {
+        padding: theme.spacing(1),
+      },
       width: '100%',
     },
     '& > label': {
