@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from './Layout';
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import {CssBaseline, Typography} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {CssBaseline} from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
@@ -13,7 +12,8 @@ const theme = createMuiTheme({
       main: "#E1555A",
     },
     background: {
-      default: "#B8D5D1",
+      // default: "#B8D5D1",
+      default: "#DFECEA",
       paper: "#ffff"
     },
     text: {
@@ -37,7 +37,6 @@ function App() {
   return <ThemeProvider theme={theme}>
     <CssBaseline/>
     <Layout />
-    <Button variant="contained" color="primary" >Hello</Button>
   </ThemeProvider>
 }
 

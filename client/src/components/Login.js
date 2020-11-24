@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link as LinkComponent, Button } from "@material-ui/core";
+import { Link as LinkComponent, Button, Typography, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import Alert from './Alert';
 import { login, getUser } from '../services';
@@ -17,11 +17,9 @@ export default function Login() {
     event.preventDefault();
     login({ email, password })
       .then(() => {
-        console.log("here")
         history.push('/dashboard')
       })
       .catch(err => {
-        console.log("login error")
         setError(err.message);
         setTimeout(() => setError(null), 3000)
       });
@@ -32,28 +30,75 @@ export default function Login() {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={0}>
-        {error && <Alert type="error">{error}</Alert>}
-        <div>
-          Sign in
-      <form onSubmit={handleSubmit}>
-            <label>Email</label>
-            <input type="email" required value={email} onChange={({ target }) => { setEmail(target.value) }} />
-            <label>Password</label>
-            <input type="password" required value={password} onChange={({ target }) => { setPassword(target.value) }} />
-            <button type="submit" >Login</button>
-          </form>
-          <Link to="/signup">
-            Create an account
-      </Link>
-        </div>
-      </Paper>
+      <Grid container alignItems="center" justify="center">
+        <Grid item xs={10} md={6}>
+          <Paper elevation={0} className={classes.paper}>
+            {error && <Alert type="error">{error}</Alert>}
+            <Grid container direction="column">
+              <Grid item xs={12}>
+                <Typography variant="h5" style={{ fontWeight: 'bolder', textAlign: "center" }}>{"Sign in"}</Typography>
+              </Grid>
+              <Grid item xs={12}>
+
+                <form onSubmit={handleSubmit} className={classes.form}>
+                  <label>Email</label>
+                  <TextField
+                    variant="outlined"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={({ target }) => { setEmail(target.value) }} />
+
+                  <label>Password</label>
+                  <TextField
+                    variant="outlined"
+                    type="password"
+                    required
+                    value={password}
+                    onChange={({ target }) => { setPassword(target.value) }} />
+
+                  <div>
+                    <Button variant="contained" color="primary" type="submit" fullWidth >
+                      <Typography variant="h5" style={{ padding: "10px" }}>{"Login"}</Typography>
+                    </Button>
+                  </div>
+                </form>
+
+              </Grid>
+              <Grid item xs={12}>
+                <LinkComponent component={Link} to="/signup" color="primary">
+                  <Typography variant="subtitle2" style={{textAlign:"center"}}>
+                    {"Create an account"}
+                  </Typography>
+                </LinkComponent>
+              </Grid>
+
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
+    display: 'flex',
+    minHeight: '100vh',
+  },
+  paper: {
+    borderRadius: 10,
+    padding: theme.spacing(3),
+  },
+  form: {
+    padding: theme.spacing(3),
+    textTransform: 'uppercase',
+    '& > *': {
+      padding: theme.spacing(2),
+      width: '100%',
+    },
+    '& > label': {
+      fontWeight: 900,
+    },
   },
 }));
