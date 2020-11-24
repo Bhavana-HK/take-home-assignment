@@ -31,6 +31,7 @@ const theme = createMuiTheme({
       disableElevation: true,
     },
   },
+  // shadows: ["none"]
 });
 
 function App() {
