@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link as LinkComponent, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import Alert from './Alert';
 import { login, getUser } from '../services';
@@ -30,37 +31,29 @@ export default function Login() {
     return <Redirect to={{ pathname: "/dashboard" }} />
 
   return (
-    <div>
-      {error && <Alert type="error">{error}</Alert> }
-      <div>
-        Sign in
+    <div className={classes.root}>
+      <Paper elevation={0}>
+        {error && <Alert type="error">{error}</Alert>}
+        <div>
+          Sign in
       <form onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="email" required value={email} onChange={({ target }) => { setEmail(target.value) }} />
-          <label>Password</label>
-          <input type="password" required value={password} onChange={({ target }) => { setPassword(target.value) }} />
-          <button type="submit" >Login</button>
-        </form>
-        <Link to="/signup">
-          Create an account
+            <label>Email</label>
+            <input type="email" required value={email} onChange={({ target }) => { setEmail(target.value) }} />
+            <label>Password</label>
+            <input type="password" required value={password} onChange={({ target }) => { setPassword(target.value) }} />
+            <button type="submit" >Login</button>
+          </form>
+          <Link to="/signup">
+            Create an account
       </Link>
-      </div>
+        </div>
+      </Paper>
     </div>
   );
 }
 
-const useStyles = makeStyles(theme => ({
-  main: {
-    margin: "0 auto",
-    padding: "16px"
+const useStyles = makeStyles((theme) => ({
+  root: {
+
   },
-  menu: {
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "#CCC",
-    "& button": {
-      margin: theme.spacing(1)
-    }
-  }
 }));
