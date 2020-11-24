@@ -35,7 +35,11 @@ export default function Login() {
             {error && <Alert type="error">{error}</Alert>}
             <Grid container direction="column">
               <Grid item xs={12}>
-                <Typography variant="h5" style={{ fontWeight: 'bolder', textAlign: "center" }}>{"Sign in"}</Typography>
+                <Typography
+                  variant="h5"
+                  style={{ fontWeight: 'bolder', textAlign: "center" }}>
+                  {"Sign in"}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
 
@@ -58,7 +62,7 @@ export default function Login() {
 
                   <div>
                     <Button variant="contained" color="primary" type="submit" fullWidth >
-                      <Typography variant="h5" style={{ padding: "10px" }}>{"Login"}</Typography>
+                      <Typography variant="subtitle2" style={{ padding: "10px", fontSize: "1rem" }}>{"Login"}</Typography>
                     </Button>
                   </div>
                 </form>

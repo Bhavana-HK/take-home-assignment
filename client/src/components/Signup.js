@@ -58,7 +58,7 @@ export default function Signup() {
 
                   <div>
                     <Button variant="contained" color="primary" type="submit" fullWidth >
-                      <Typography variant="h5" style={{ padding: "10px" }}>Create an account</Typography>
+                      <Typography variant="subtitle2" style={{ padding: "10px", fontSize:"1rem" }}>Create an account</Typography>
                     </Button>
                   </div>
 
