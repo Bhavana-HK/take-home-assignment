@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Header from './Header';
 import Summary from './Summary';
 import Instances from './Instances';
@@ -10,6 +12,7 @@ import { INR_SYMBOL, INR_USD_RATE } from "../constants";
 export default function Dashboard() {
   // import useSWR from "swr";
   // let { data, error } = useSWR("instances", instances);
+  const classes = useStyles();
   const [errorMessage, setErrorMessage] = useState(null);
   const [currency, setCurrency] = useState('USD');
   const [data, setData] = useState([]);
@@ -62,8 +65,31 @@ export default function Dashboard() {
     <div>
       {errorMessage && <Alert type="error">{errorMessage}</Alert>}
       <Header setError={setErrorMessage} />
-      <Summary instances={data} currency={currency} setCurrency={setCurrency} />
-      <Instances instances={data} currency={currency} changeStatus={changeStatus} />
+      <Grid container justify="center" className={classes.grid}>
+        <Grid item xs={11} md={11} >
+          <Summary instances={data} currency={currency} setCurrency={setCurrency} />
+        </Grid>
+        <Grid item xs={11} md={11} >
+          <Instances instances={data} currency={currency} changeStatus={changeStatus} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  grid: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
+    width: '100%',
+    '& > *': {
+      padding: theme.spacing(2),
+      [theme.breakpoints.down('md')]: {
+        padding: theme.spacing(1),
+      },
+      width: '100%',
+    },
+  },
+}));

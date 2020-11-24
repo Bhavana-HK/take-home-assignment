@@ -10,7 +10,13 @@ const switchStyles = (theme) => ({
     margin: theme.spacing(1),
   },
   switchBase: {
+    color: "#005A3C",
     padding: 1,
+    "& + $track": {
+      backgroundColor: "#B8D5D1",
+      opacity: 1,
+      border: "none",
+    },
     "&$checked": {
       transform: "translateX(16px)",
       color: "#005A3C",
@@ -36,7 +42,7 @@ const switchStyles = (theme) => ({
     opacity: 1,
     transition: theme.transitions.create(["background-color", "border"]),
   },
-  checked: {},
+  checked: {  },
   focusVisible: {},
 });
 
