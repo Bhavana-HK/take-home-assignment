@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Link as LinkComponent, Button, Typography, TextField } from "@material-ui/core";
+import { Link as LinkComponent, Button, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid } from "@material-ui/core";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import Alert from './Alert';
 import { login, getUser } from '../services';
@@ -67,7 +66,7 @@ export default function Login() {
               </Grid>
               <Grid item xs={12}>
                 <LinkComponent component={Link} to="/signup" color="primary">
-                  <Typography variant="subtitle2" style={{textAlign:"center"}}>
+                  <Typography variant="subtitle2" style={{ textAlign: "center" }}>
                     {"Create an account"}
                   </Typography>
                 </LinkComponent>
